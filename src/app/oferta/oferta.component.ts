@@ -24,7 +24,7 @@ export class OfertaComponent implements OnInit {
 
     console.log(` o oferta co o id${this.ofertaId}`)
 
-this.ofertaservice.getOfertasPorId(2).then((oferta:any)=> {this.ofertas=oferta})
+this.ofertaservice.getOfertasPorId(this.ofertaId).then((oferta:any)=> {this.ofertas=oferta})
 
 
 
