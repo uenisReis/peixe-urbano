@@ -14,7 +14,7 @@ export class OfertaComponent implements OnInit {
 
   constructor( private route:ActivatedRoute, private ofertaservice:OfertasService) { }
   public ofertaId:any
- public ofertas !:Oferta
+ public oferta !:Oferta
   
   ngOnInit(): void {
 
@@ -24,11 +24,11 @@ export class OfertaComponent implements OnInit {
 
     console.log(` o oferta co o id${this.ofertaId}`)
 
-this.ofertaservice.getOfertasPorId(this.ofertaId).then((oferta:any)=> {this.ofertas=oferta})
+this.ofertaservice.getOfertasPorId(this.ofertaId).then((oferta:any)=> {this.oferta=oferta})
 
 
 
-console.log(` o oferta passou aqui${this.ofertas}`)
+console.log(` o oferta passou aqui${this.oferta}`)
 
 
 

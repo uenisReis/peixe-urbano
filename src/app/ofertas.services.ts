@@ -28,7 +28,7 @@ return firstValueFrom(this.http.get(`${this.url}destaque=true`)).then((resposta:
 
 
 public getOfertasPorId(id:number):Promise<Oferta>{
-return firstValueFrom( this.http.get(`${this.url}id=${id}`)).then((resposta:any)=> resposta.jason[0]);
+return firstValueFrom( this.http.get(`${this.url}id=${id}`)).then((resposta:any)=> resposta[0]);
 
 }
 

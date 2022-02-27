@@ -13,7 +13,8 @@ import { RestaurantesComponent } from './restaurantes/restaurantes.component';
 import { ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
 import { OfertaComponent } from './oferta/oferta.component';
-
+import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
+import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,8 @@ import { OfertaComponent } from './oferta/oferta.component';
     DiversaoComponent,
     RestaurantesComponent,
     OfertaComponent,
+    OndeFicaComponent,
+    ComoUsarComponent,
 
 
   ],
