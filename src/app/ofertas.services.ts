@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http'
+import { identifierName } from '@angular/compiler'
 import { Injectable } from '@angular/core'
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom'
+import { URL_API, URL_API_COMO_USAR, URL_API_ONDE_FICA } from './app.api'
 import { Oferta } from './shared/oferta.model'
 
 
@@ -8,8 +10,9 @@ import { Oferta } from './shared/oferta.model'
 
 @Injectable()
 export class OfertasService {
- public url:String="http://localhost:3000/ofertas?"
-
+ private url:String=URL_API
+private urlComoUsar:String=URL_API_COMO_USAR
+private urlOndeFica=URL_API_ONDE_FICA; 
 constructor(private http:HttpClient){}
 
     public getOfertas(): Promise<Array<Oferta>> {
@@ -32,7 +35,18 @@ return firstValueFrom( this.http.get(`${this.url}id=${id}`)).then((resposta:any)
 
 }
 
+public getComoUsarPorId(id:number):Promise<String>{
 
+    return firstValueFrom(this.http.get(`${this.urlComoUsar}id=${id}`)).then((resposta:any)=>resposta[0].descricao);
+    
+    
+
+
+}public getOndeFicaPorId(id:number):Promise<String>{
+
+    return firstValueFrom(this.http.get(`${this.urlOndeFica}id=${id}`))
+    .then((resposta:any)=>resposta[0].descricao)
+}
 
 
      }
