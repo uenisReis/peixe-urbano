@@ -13,9 +13,14 @@ export class OndeFicaComponent implements OnInit {
 public ondeFica!:String;
   ngOnInit(): void {
 
-let id=this.router.parent?.snapshot.params['id']
 
-this.ofertaservice.getOndeFicaPorId(id).then((resposta:String)=>this.ondeFica=resposta)
+ this.router.parent?.params.subscribe((context:any)=>{
+
+  this.ofertaservice.getOndeFicaPorId(context.id).then((resposta:String)=>this.ondeFica=resposta)
+
+ })
+
+
   }
 
 }

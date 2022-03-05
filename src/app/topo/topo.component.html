@@ -1,10 +1,45 @@
 <div class="fixed-top">
     <nav class="navbar navbar-light bg-faded">
-        <div class="container">
-            <a routerLink="" class="navbar-brand">
-                <img src="../../assets/logo.png" />
-            </a>
-            <a a href="#"><img src="../../assets/carrinho.png" /></a>
+        <div class="row  container">
+            <div class=" col-2 col-sm-2   d-none d-sm-block d-md-none  ">
+                <a href=""><img src="../../assets/carrinho.png" /></a>
+            </div>
+
+            <div class=" col-md-3  d-none d-md-block d-sm-none  col-sm-2 ">
+                <a class="navbar-brand " routerLink="/">
+                    <img src="../../assets/logo.png" />
+                </a>
+            </div>
+
+
+            <!-- #termoDaPesquisa é uma variável sendo passada 
+          como parâmetro para função pesquisa em keyup -->
+            <div class="col-md-6     ">
+                <input type="text" class="   form-control" placeholder="Pesquise por ofertas" #termoDaPesquisa (keyup)="pesquisa(termoDaPesquisa.value)">
+
+                <div id="listaGrupo" class="list-group">
+                    <ul *ngFor="let pesquisa of oferta| async">
+                        <a [routerLink]="['/oferta',pesquisa.id]" (click)="zerarPesquisa()">
+                            <li>{{pesquisa.titulo}}</li>
+                        </a>
+
+
+                    </ul>
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <div class="col-md-2 	  d-sm-none d-md-block  ">
+                <a href=""><img src="../../assets/carrinho.png" /></a>
+            </div>
+
+
+
         </div>
     </nav>
 
@@ -12,7 +47,7 @@
         <div class="container">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link    " routerLinkActive="active" routerLink="/restaurantes">Restaurantes</a>
+                    <a class="nav-link" routerLinkActive="active" routerLink="/restaurantes">Restaurantes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" routerLink="/diversao">Diversão</a>

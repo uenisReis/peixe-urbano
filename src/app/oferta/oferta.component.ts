@@ -13,18 +13,18 @@ providers:[OfertasService]
 export class OfertaComponent implements OnInit {
 
   constructor( private route:ActivatedRoute, private ofertaservice:OfertasService) { }
-  public ofertaId:any
  public oferta !:Oferta
   
   ngOnInit(): void {
 
     
-    this.ofertaId= this.route.snapshot.params['id']
+this.route.params.subscribe(
+(contexto:any)=>
+this.ofertaservice.getOfertasPorId(this.route.snapshot.params['id']).then((oferta:any)=> {this.oferta=oferta})
+
+)
 
 
-    console.log(` o oferta co o id${this.ofertaId}`)
-
-this.ofertaservice.getOfertasPorId(this.ofertaId).then((oferta:any)=> {this.oferta=oferta})
 
 
 

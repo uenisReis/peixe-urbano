@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { identifierName } from '@angular/compiler'
 import { Injectable } from '@angular/core'
+import { catchError, map, Observable, retry, throwError } from 'rxjs'
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom'
 import { URL_API, URL_API_COMO_USAR, URL_API_ONDE_FICA } from './app.api'
 import { Oferta } from './shared/oferta.model'
@@ -46,6 +47,15 @@ public getComoUsarPorId(id:number):Promise<String>{
 
     return firstValueFrom(this.http.get(`${this.urlOndeFica}id=${id}`))
     .then((resposta:any)=>resposta[0].descricao)
+}
+
+public pesquisarOferta(termo:String):Observable<Oferta[]>{
+
+return this.http.get(`${this.url}descricao_oferta_like=${termo}`).pipe(
+                map((resposta: any)=> resposta),
+                catchError((error: any)=> throwError(()=>"Algo deu errado!"))
+            );
+
 }
 
 

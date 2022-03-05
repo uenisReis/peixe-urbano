@@ -1,18 +1,62 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HomeComponent } from '../home/home.component';
+import { ChildActivationStart } from '@angular/router';
+import { catchError, debounceTime, distinctUntilChanged, observable, Observable, of, Subject, switchMap } from 'rxjs';
+import { OfertasService } from '../ofertas.services';
+import { Oferta } from '../shared/oferta.model';
 @Component({
   selector: 'app-topo',
   templateUrl: './topo.component.html',
-  styleUrls: ['./topo.component.css']
+  styleUrls: ['./topo.component.css'],
+  providers:[OfertasService]
 })
 export class TopoComponent implements OnInit {
 
+public oferta!:Observable<Oferta[]>;
 
-  constructor() { }
+public pesquisaoferta:Subject<String>= new Subject<String>()
 
-  ngOnInit() {
+  constructor(private ofertaservice:OfertasService) { }
+
+
+
+
+
+  pesquisa(dados:String):void{
+
+this.pesquisaoferta.next(dados)
 
 
   }
 
+
+  ngOnInit() {
+this.oferta=this.pesquisaoferta.pipe(
+  debounceTime(1000),//aguarda 1 segundo para fazer a pesquisa
+  distinctUntilChanged(),
+  switchMap((termo:String)=>{
+
+    if(termo.trim() ===""){
+
+      return of<Array<Oferta>>([])
+    }
+
+return this.ofertaservice.pesquisarOferta(termo)
+}),catchError ((erro) => {
+  console.log(erro)
+  return of<Oferta[]>([])
+ })
+
+)
+
+  }
+
+
+  zerarPesquisa():void{
+
+
+    this.pesquisaoferta.next('')
+  }
+
 }
+
+

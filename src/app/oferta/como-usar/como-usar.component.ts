@@ -21,18 +21,21 @@ export class ComoUsarComponent implements OnInit {
 
 
 
-  let id:number= this.router.parent?.snapshot.params['id']
+  this.router.parent?.params.subscribe(
 
-this.ofertaserice.getComoUsarPorId(id).then(
+(context:any)=>this.ofertaserice.getComoUsarPorId(context.id).then(
   (resposta:String)=>{
-    
-    console.log(resposta)
+  
     this.comousar=resposta
 
   
   }
   
 )
+
+
+  )
+
 
 
 
