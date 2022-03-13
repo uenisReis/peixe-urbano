@@ -1,7 +1,7 @@
 
-interface teste{
+interface img{
 
-  url:String
+  url:string
 }
 
 
@@ -14,5 +14,5 @@ export class Oferta {
     public anunciante!: string
     public valor!: number
     public destaque!: boolean
-    public imagens!: Array<teste>
+    public imagens!: Array<img>
 }

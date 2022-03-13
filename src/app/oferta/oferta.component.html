@@ -36,13 +36,14 @@
 
                     <div class="row">
                         <div class="col text-center">
-                            <button type="button" class="btn btn-warning btn-lg">Adicionar ao carrinho</button>
+                            <button routerLink="/ordem-compra" (click)="gerarTampleteOferta(oferta)" type="button" class="btn btn-warning btn-lg">Adicionar ao carrinho</button>
                         </div>
                     </div>
 
                 </div>
 
-            </div>
+            </div> #dadosOferta
+
         </div>
     </div>
 
@@ -53,7 +54,7 @@
                 <button class="nav-link active" data-bs-toggle="tab" routerLink="como-usar" type="button" role="tab" aria-controls="home" aria-selected="true">como usar ?</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" type="button" routerLink="onde-fica" role="tab" aria-controls="profile" aria-selected="false">onde fica ?</button>
+                <button data-bs-toggle="tab" type="button" routerLink="onde-fica" role="tab" aria-controls="profile" aria-selected="false">onde fica ?</button>
             </li>
 
         </ul>

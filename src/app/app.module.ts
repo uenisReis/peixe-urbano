@@ -15,6 +15,10 @@ import { RouterModule } from '@angular/router';
 import { OfertaComponent } from './oferta/oferta.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CompraSucessoComponent } from './ordem-compra/compra-sucesso/compra-sucesso.component';
+import { CarrinhoService } from './carrinho-compra.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +30,8 @@ import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
     OfertaComponent,
     OndeFicaComponent,
     ComoUsarComponent,
+    OrdemCompraComponent,
+    CompraSucessoComponent,
 
 
   ],
@@ -36,12 +42,13 @@ import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     AppRoutingModule ,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [],
+  providers: [CarrinhoService],
   bootstrap: [AppComponent]
 })
 export   class AppModule { }

@@ -1,12 +1,15 @@
 
 
 
- import { Routes } from '@angular/router';
+ import { compileDeclareClassMetadata } from '@angular/compiler';
+import { Routes } from '@angular/router';
 import { DiversaoComponent } from './diversao/diversao.component';
 import { HomeComponent } from './home/home.component';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OfertaComponent } from './oferta/oferta.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
+import { CompraSucessoComponent } from './ordem-compra/compra-sucesso/compra-sucesso.component';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 import { RestaurantesComponent } from './restaurantes/restaurantes.component';
 
 export const ROUTES: Routes = [
@@ -21,10 +24,13 @@ export const ROUTES: Routes = [
     {path:'',component:ComoUsarComponent},
 {path:'como-usar',component:ComoUsarComponent},
 {path:'onde-fica',component: OndeFicaComponent}
+]},
 
+{path:'ordem-compra',component:OrdemCompraComponent, children:[
+
+    {path: 'compra-sucesso', component:CompraSucessoComponent}
 
 ]}
-
 
     
 ]

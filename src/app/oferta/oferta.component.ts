@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {  CarrinhoService } from '../carrinho-compra.service';
 import { OfertasService } from '../ofertas.services';
 import { Oferta } from '../shared/oferta.model';
 
@@ -7,12 +8,12 @@ import { Oferta } from '../shared/oferta.model';
   selector: 'app-oferta',
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
-providers:[OfertasService]
+providers:[OfertasService,]
 
 })
 export class OfertaComponent implements OnInit {
 
-  constructor( private route:ActivatedRoute, private ofertaservice:OfertasService) { }
+  constructor( private route:ActivatedRoute, private ofertaservice:OfertasService,private  carrinhoService:CarrinhoService) { }
  public oferta !:Oferta
   
   ngOnInit(): void {
@@ -25,16 +26,15 @@ this.ofertaservice.getOfertasPorId(this.route.snapshot.params['id']).then((ofert
 )
 
 
-
-
-
-console.log(` o oferta passou aqui${this.oferta}`)
-
-
-
  }
 
+ public gerarTampleteOferta(oferta:Oferta):void{
 
+  this.carrinhoService.inserirIten(this.oferta)
+console.log("oferta ",this.oferta)
+
+
+}
 
 
 

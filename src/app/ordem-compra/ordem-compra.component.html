@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="ordem-compra" *ngIf="idPedidorespots ===undefined">
+        <form [formGroup]="formulario" novalidate (ngSubmit)="enviarFormulario()">
+
+            <h5>Sua Compra</h5>
+            <hr />
+
+            <div *ngFor="let item of itenCarrinho" class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
+                <div class="form-group col-sm-1">
+                    <img [src]="item.image.url" class="img-fluid">
+                </div>
+                <div class="form-group col-sm-6">
+                    {{item.titulo}} <br /> {{item.descricao}}.
+                </div>
+
+                <div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-link">-</button> {{item.quantidade}}
+                            <button type="button" class="btn btn-link">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-3 d-flex justify-content-end">
+                    {{ item.quantidade * item.valor | currency: 'BRL':true }} </div>
+            </div>
+
+
+
+            <div class="form-row">
+                <div class="form-group col d-flex justify-content-end">
+                    <h4>Total do pedido: 61.80</h4>
+                </div>
+            </div>
+            <br />
+
+
+            <h5>Dados de entrega</h5>
+            <hr />
+
+            <div class="form-row">
+
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control " placeholder="Endereço" autocomplete="off" formControlName="endereco">
+                    <small *ngIf="formulario.get('endereco')?.invalid && formulario.get('endereco')?.touched"> endereço incorreto
+
+                    </small>
+                </div>
+                <br>
+                <div class="form-group col-md-2">
+                    <input type="text" class="form-control" placeholder="Número" autocomplete="off" formControlName="numero">
+                </div>
+                <small *ngIf="formulario.get('numero')?.invalid && formulario.get('numero')?.touched"> numero invalido</small>
+
+                <br>
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" placeholder="Complemento" autocomplete="off" formControlName="complemento">
+                </div>
+
+            </div>
+            <br />
+
+            <h5>Dados de pagamento</h5>
+            <hr />
+
+            <div class="form-row">
+                <p> Selecione uma opção
+                </p>
+                <div class="form-group col-md-3">
+                    <select class="form-control " formControlName="formaPagamento">
+  
+              <option>Dinheiro</option>
+              <option>Débito</option>
+            </select>
+
+                </div>
+            </div>
+            <small *ngIf="formulario.get('formaPagamento')?.invalid && formulario.get('formaPagamento')?.touched">  a forma de pagamento é obrigatorio</small>
+
+
+            <hr />
+            <button [disabled]="formulario.invalid" type="submit" class="btn btn-primary btn-lg  mb-5">Cofirmar compra</button>
+        </form>
+    </div>
+
+
+    <div class="ordem-compra" *ngIf="idPedidorespots !==undefined">
+
+        <app-compra-sucesso [idPedidorespots]=idPedidorespots>
+        </app-compra-sucesso>
+
+    </div>
+
+
+</div>
