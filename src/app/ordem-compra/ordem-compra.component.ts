@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CarrinhoService } from '../carrinho-compra.service';
 import { Carrinho } from '../shared/carrinho.model';
+import { Oferta } from '../shared/oferta.model';
 import { Pedido } from '../shared/pedido.model';
 import { OrdemCompraService } from './onden-compra.service';
 
@@ -32,9 +33,8 @@ public itenCarrinho:Carrinho[]=[];
   
 
   ngOnInit(): void {
-this.itenCarrinho =this.carrinhoService.iten
+this.itenCarrinho =this.carrinhoService.exibirItens()
 
-console.log("isso se trata do iten carrinho",this.itenCarrinho)
 
   }
 
@@ -42,6 +42,16 @@ console.log("isso se trata do iten carrinho",this.itenCarrinho)
 
    
 public enviarFormulario():any{
+
+if(this.itenCarrinho.length===0){
+alert('voçênao tem nada selecionado')
+
+}else{
+
+
+
+
+
  let newFormulario= this.formulario.value
 
 let pedido:Pedido=new Pedido(
@@ -49,24 +59,31 @@ newFormulario.endereco,
 newFormulario.numero,
 newFormulario.complemento,
 newFormulario.formaPagamento,
-
- 
-
+ this.itenCarrinho
 )
-
-
 this.compraService.efetivarCompra(pedido)
 .subscribe((idPedido:any)=> { this.idPedidorespots=idPedido
 
-console.log(" esse console é da classe ordemCompra",this.idPedidorespots)
-})
-  
+  this.carrinhoService.zerarCarrinho()
 
+})}}
+
+public atualizarValorTotal():number{
+
+ let valor= this.carrinhoService.atualizarValorTotal()
+ return valor
+}
+
+public reduzirQuantidade(item:Carrinho){
+this.carrinhoService.decrementValor(item)
 }
 
 
 
-    
+    public adicionarQuantidade (item:Carrinho){
+
+this.carrinhoService.incrementValor(item)
+    }
 
 }
 

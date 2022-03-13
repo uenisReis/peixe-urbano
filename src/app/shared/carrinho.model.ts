@@ -13,7 +13,6 @@ public image:imgUrl,
  public descricao:string,
 public valor: number,
 public quantidade:number
-
 )
 {}
 

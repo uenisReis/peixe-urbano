@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ChildActivationStart } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { catchError, debounceTime, distinctUntilChanged, observable, Observable, of, Subject, switchMap } from 'rxjs';
 import { OfertasService } from '../ofertas.services';
+import { Carrinho } from '../shared/carrinho.model';
 import { Oferta } from '../shared/oferta.model';
 @Component({
   selector: 'app-topo',
@@ -14,8 +14,7 @@ export class TopoComponent implements OnInit {
 public oferta!:Observable<Oferta[]>;
 
 public pesquisaoferta:Subject<String>= new Subject<String>()
-
-  constructor(private ofertaservice:OfertasService) { }
+  constructor(private ofertaservice:OfertasService  ) { }
 
 
 
@@ -48,14 +47,17 @@ return this.ofertaservice.pesquisarOferta(termo)
 
 )
 
+
   }
-
-
   zerarPesquisa():void{
-
 
     this.pesquisaoferta.next('')
   }
+
+
+
+
+
 
 }
 
